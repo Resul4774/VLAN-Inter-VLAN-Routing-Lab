@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<lab name="VLAN Inter-VLAN Routing Lab" version="1" scripttimeout="300" lock="0" author="Ibrahim Resul Ercüment">
+  <topology>
+    <nodes>
+      <node id="1" name="CSR" type="qemu" template="csr1000vng" image="csr1000vng-universalk9.16.12.04a" console="telnet" cpu="1" cpulimit="0" ram="4096" ethernet="6" uuid="bb18b186-f1dc-48f2-b4a3-01022d39e1ca" qemu_options="-machine type=pc,accel=kvm -cpu host -serial mon:stdio -nographic -no-user-config -nodefaults -rtc base=utc" qemu_version="4.1.0" qemu_arch="x86_64" qemu_nic="vmxnet3" delay="0" icon="Router-2D-Cat-Blue-S.svg" config="0" left="765" top="234">
+        <interface id="0" name="Gi1" type="ethernet" network_id="6"/>
+        <interface id="1" name="Gi2" type="ethernet" network_id="7"/>
+      </node>
+      <node id="2" name="Switch1" type="qemu" template="viosl2" image="viosl2-adventerprisek9-m.ssa.high_iron_20200929" console="telnet" cpu="1" cpulimit="0" ram="1024" ethernet="8" uuid="4fa1fa87-7210-4827-9a16-c86661890a7b" qemu_options="-machine type=pc,accel=kvm -serial mon:stdio -nographic -no-user-config -nodefaults -rtc base=utc -cpu host" qemu_version="2.4.0" qemu_arch="x86_64" delay="0" icon="Switch-2D-L2-Generic-S.svg" config="0" left="576" top="414">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="6"/>
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="1"/>
+        <interface id="2" name="Gi0/2" type="ethernet" network_id="2"/>
+        <interface id="3" name="Gi0/3" type="ethernet" network_id="5"/>
+      </node>
+      <node id="3" name="Switch2" type="qemu" template="viosl2" image="viosl2-adventerprisek9-m.ssa.high_iron_20200929" console="telnet" cpu="1" cpulimit="0" ram="1024" ethernet="8" uuid="6784d3d2-7632-44a1-a124-571af7d4a33c" qemu_options="-machine type=pc,accel=kvm -serial mon:stdio -nographic -no-user-config -nodefaults -rtc base=utc -cpu host" qemu_version="2.4.0" qemu_arch="x86_64" delay="0" icon="Switch-2D-L2-Generic-S.svg" config="0" left="957" top="414">
+        <interface id="0" name="Gi0/0" type="ethernet" network_id="7"/>
+        <interface id="1" name="Gi0/1" type="ethernet" network_id="3"/>
+        <interface id="2" name="Gi0/2" type="ethernet" network_id="4"/>
+        <interface id="3" name="Gi0/3" type="ethernet" network_id="5"/>
+      </node>
+      <node id="4" name="VPC1" type="vpcs" template="vpcs" image="" ethernet="1" delay="0" icon="PC-2D-Desktop-Generic-S.svg" config="0" left="486" top="552">
+        <interface id="0" name="eth0" type="ethernet" network_id="1"/>
+      </node>
+      <node id="5" name="VPC2" type="vpcs" template="vpcs" image="" ethernet="1" delay="0" icon="PC-2D-Desktop-Generic-S.svg" config="0" left="666" top="552">
+        <interface id="0" name="eth0" type="ethernet" network_id="2"/>
+      </node>
+      <node id="6" name="VPC3" type="vpcs" template="vpcs" image="" ethernet="1" delay="0" icon="PC-2D-Desktop-Generic-S.svg" config="0" left="894" top="555">
+        <interface id="0" name="eth0" type="ethernet" network_id="3"/>
+      </node>
+      <node id="7" name="VPC4" type="vpcs" template="vpcs" image="" ethernet="1" delay="0" icon="PC-2D-Desktop-Generic-S.svg" config="0" left="1038" top="555">
+        <interface id="0" name="eth0" type="ethernet" network_id="4"/>
+      </node>
+    </nodes>
+    <networks>
+      <network id="1" type="bridge" name="Net-VPC1iface_0" left="405" top="613" visibility="0" icon="lan.png"/>
+      <network id="2" type="bridge" name="Net-VPC2iface_0" left="585" top="613" visibility="0" icon="lan.png"/>
+      <network id="3" type="bridge" name="Net-VPC3iface_0" left="810" top="610" visibility="0" icon="lan.png"/>
+      <network id="4" type="bridge" name="Net-VPC4iface_0" left="981" top="607" visibility="0" icon="lan.png"/>
+      <network id="5" type="bridge" name="Net-Switch1iface_3" left="504" top="472" visibility="0" icon="lan.png"/>
+      <network id="6" type="bridge" name="Net-Switch1iface_0" left="504" top="472" visibility="0" icon="lan.png"/>
+      <network id="7" type="bridge" name="Net-Switch2iface_0" left="894" top="472" visibility="0" icon="lan.png"/>
+    </networks>
+  </topology>
+</lab>
